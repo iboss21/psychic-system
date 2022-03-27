@@ -1,4 +1,4 @@
-# psychic-system for QBCore Framework. Fivem Ready.
+# Psychic-System for QBCore Framework. Fivem Ready.
 
 Brake Disk Getting Hot on/off
 fast command /diskoff
