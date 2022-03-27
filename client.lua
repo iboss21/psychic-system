@@ -71,12 +71,12 @@ Citizen.CreateThread(function()
 					Wait(100)
 				end
 				glow_rear = 1
-				TriggerServerEvent("lux-brake:add_rear", VehToNet(GetVehiclePedIsIn(PlayerPedId(), 0)), players_string)
+				TriggerServerEvent("psychic-system:add_rear", VehToNet(GetVehiclePedIsIn(PlayerPedId(), 0)), players_string)
 			end
 		else
 			if(heat_rear < 30) then
 				glow_rear = 0
-				TriggerServerEvent("lux-brake:rem_rear", VehToNet(GetVehiclePedIsIn(PlayerPedId(), 0)))
+				TriggerServerEvent("psychic-system:rem_rear", VehToNet(GetVehiclePedIsIn(PlayerPedId(), 0)))
 			end
 		end
 		if(glow_front == 0) then
@@ -86,12 +86,12 @@ Citizen.CreateThread(function()
 					Wait(100)
 				end
 				glow_front = 1
-				TriggerServerEvent("lux-brake:add_front", VehToNet(GetVehiclePedIsIn(PlayerPedId(), 0)), players_string)
+				TriggerServerEvent("psychic-system:add_front", VehToNet(GetVehiclePedIsIn(PlayerPedId(), 0)), players_string)
 			end
 		else
 			if(heat_front < 30) then
 				glow_front = 0
-				TriggerServerEvent("lux-brake:rem_front", VehToNet(GetVehiclePedIsIn(PlayerPedId(), 0)))
+				TriggerServerEvent("psychic-system:rem_front", VehToNet(GetVehiclePedIsIn(PlayerPedId(), 0)))
 			end
 		end
 		if(heat_rear > 1) then
@@ -119,24 +119,24 @@ function GetClosestPlayers()
 	end)
 end
 
-RegisterNetEvent("lux-brake:add_rear")
-AddEventHandler("lux-brake:add_rear", function(vehicle, players)
+RegisterNetEvent("psychic-system:add_rear")
+AddEventHandler("psychic-system:add_rear", function(vehicle, players)
 	if(enabled) then
 		if(players:find("%-" .. tostring(GetPlayerServerId(PlayerId())) .. "%-")) then
 			table.insert(rearvehicles, NetToVeh(vehicle))
 		end
 	end
 end)
-RegisterNetEvent("lux-brake:add_front")
-AddEventHandler("lux-brake:add_front", function(vehicle, players)
+RegisterNetEvent("psychic-system:add_front")
+AddEventHandler("psychic-system:add_front", function(vehicle, players)
 	if(enabled) then
 		if(players:find("%-" .. tostring(GetPlayerServerId(PlayerId())) .. "%-")) then
 			table.insert(frontvehicles, NetToVeh(vehicle))
 		end
 	end
 end)
-RegisterNetEvent("lux-brake:rem_rear")
-AddEventHandler("lux-brake:rem_rear", function(vehicle)
+RegisterNetEvent("psychic-system:rem_rear")
+AddEventHandler("psychic-system:rem_rear", function(vehicle)
 	for i in pairs(rearvehicles) do
 		if(rearvehicles[i] == NetToVeh(vehicle)) then
 			table.remove(rearvehicles, i)
@@ -144,8 +144,8 @@ AddEventHandler("lux-brake:rem_rear", function(vehicle)
 		end
 	end
 end)
-RegisterNetEvent("lux-brake:rem_front")
-AddEventHandler("lux-brake:rem_front", function(vehicle)
+RegisterNetEvent("psychic-system:rem_front")
+AddEventHandler("psychic-system:rem_front", function(vehicle)
 	for i in pairs(frontvehicles) do
 		if(frontvehicles[i] == NetToVeh(vehicle)) then
 			table.remove(frontvehicles, i)
