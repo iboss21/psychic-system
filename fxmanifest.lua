@@ -14,7 +14,7 @@
     ╚═════╝ ╚═╝╚══════╝╚═╝  ╚═╝    ╚══════╝   ╚═╝   ╚══════╝
 
     🐺 LXR Brake Disk Heat System
-    Heated Wheel / Brake Disc Visual Effect for Wagons & Vehicles
+    Heated Wheel / Brake Disc Visual Effect for Cars & Vehicles
 
     ═══════════════════════════════════════════════════════════════════════════════
     SERVER INFORMATION
@@ -32,12 +32,10 @@
 ]]
 
 fx_version 'cerulean'
-game       'rdr3'
-
-rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aware my resources *will* become incompatible once RedM ships.'
+game       'gta5'
 
 name        'lxr-brakedisk'
-description '🐺 LXR Brake Disk Heat System | Heated Wheel Visual FX | wolves.land'
+description '🐺 LXR Brake Disk Heat System | Heated Brake Disc Visual FX | wolves.land'
 author      'iBoss21 / The Lux Empire'
 version     '1.0.0'
 repository  'https://github.com/iboss21/psychic-system'

@@ -14,7 +14,7 @@
     ╚═════╝ ╚═╝╚══════╝╚═╝  ╚═╝    ╚══════╝   ╚═╝   ╚══════╝
 
     🐺 LXR Brake Disk Heat System — Client
-    Heated Wheel / Brake Disc Visual Effect for Wagons & Vehicles
+    Heated Wheel / Brake Disc Visual Effect for Cars & Vehicles
 
     ═══════════════════════════════════════════════════════════════════════════════
     SERVER INFORMATION
@@ -42,13 +42,11 @@ local function InitFramework()
     if Config.Framework ~= 'auto' then
         FrameworkName = Config.Framework
     else
-        -- Auto-detect: priority → LXR-Core → RSG-Core → VORP → Standalone
+        -- Auto-detect: priority → LXR-Core → QB-Core → Standalone
         if GetResourceState('lxr-core') == 'started' then
             FrameworkName = 'lxr-core'
-        elseif GetResourceState('rsg-core') == 'started' then
-            FrameworkName = 'rsg-core'
-        elseif GetResourceState('vorp_core') == 'started' then
-            FrameworkName = 'vorp_core'
+        elseif GetResourceState('qb-core') == 'started' then
+            FrameworkName = 'qb-core'
         else
             FrameworkName = 'standalone'
         end
@@ -56,10 +54,8 @@ local function InitFramework()
 
     if FrameworkName == 'lxr-core' then
         Framework = exports['lxr-core']:GetCoreObject()
-    elseif FrameworkName == 'rsg-core' then
-        Framework = exports['rsg-core']:GetCoreObject()
-    elseif FrameworkName == 'vorp_core' then
-        Framework = exports['vorp_core']:getCore()
+    elseif FrameworkName == 'qb-core' then
+        Framework = exports['qb-core']:GetCoreObject()
     end
 
     if Config.Debug then
@@ -73,14 +69,12 @@ end
 
 local function Notify(msg)
     if FrameworkName == 'lxr-core' and Framework then
-        Framework.Functions.Notify(msg, 'info')
-    elseif FrameworkName == 'rsg-core' and Framework then
-        TriggerEvent('RSGCore:Notify', msg, 'inform')
-    elseif FrameworkName == 'vorp_core' and Framework then
-        Framework.NotifyRightTip(msg, 4000)
+        Framework.Functions.Notify(msg, 'inform')
+    elseif FrameworkName == 'qb-core' and Framework then
+        Framework.Functions.Notify(msg, 'primary', 4000)
     else
         -- Standalone fallback: use the game chat
-        TriggerEvent('chatMessage', 'System', { 255, 255, 255 }, msg)
+        TriggerEvent('chat:addMessage', { color = { 255, 255, 255 }, multiline = true, args = { 'System', msg } })
     end
 end
 

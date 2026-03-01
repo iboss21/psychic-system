@@ -14,7 +14,7 @@
     ╚═════╝ ╚═╝╚══════╝╚═╝  ╚═╝    ╚══════╝   ╚═╝   ╚══════╝
 
     🐺 LXR Brake Disk Heat System — Configuration
-    Heated Wheel / Brake Disc Visual Effect for Wagons & Vehicles
+    Heated Wheel / Brake Disc Visual Effect for Cars & Vehicles
 
     ═══════════════════════════════════════════════════════════════════════════════
     SERVER INFORMATION
@@ -30,8 +30,7 @@
 
     Framework Support:
     - LXR Core  (Primary)
-    - RSG Core  (Primary)
-    - VORP Core (Supported / Legacy)
+    - QB-Core   (Primary)
     - Standalone (Fallback)
 
     Version: 1.0.0
@@ -89,12 +88,11 @@ Config.ServerInfo = {
 --[[
     Framework Priority (in order):
     1. LXR-Core  (Primary)
-    2. RSG-Core  (Primary)
-    3. VORP Core (Supported / Legacy)
-    4. Standalone (Fallback)
+    2. QB-Core   (Primary)
+    3. Standalone (Fallback)
 
     Set to 'auto' for automatic detection, or specify manually:
-    'lxr-core' | 'rsg-core' | 'vorp_core' | 'standalone'
+    'lxr-core' | 'qb-core' | 'standalone'
 ]]
 
 Config.Framework = 'auto'
@@ -128,25 +126,26 @@ Config.General = {
 -- ████████████████████████████████████████████████████████████████████████████████
 
 --[[
-    RedM control hashes used to detect braking / reversing.
+    GTA5 / FiveM control IDs used to detect braking / reversing.
     Adjust these if your server uses custom keybinds.
 
-    Common RedM wagon / vehicle controls:
-      Brake     — 0xAD0D1F1E  (INPUT_VEH_BRAKE)
-      Accelerate — 0xFEF80614  (INPUT_VEH_ACCELERATE / reverse in gear 0)
+    Standard GTA5 vehicle controls:
+      Brake        — 72  (INPUT_VEH_BRAKE)
+      Accelerate   — 71  (INPUT_VEH_ACCELERATE, also used for reversing in gear 0)
+      Handbrake    — 75  (INPUT_VEH_HANDBRAKE)
 
-    To find more: https://github.com/femga/rdr3_discoveries
+    Full list: https://docs.fivem.net/docs/game-references/controls/
 ]]
 
 Config.Controls = {
     -- Input group (0 = all / general)
     inputGroup  = 0,
 
-    -- Control hash for braking (forward motion)
-    brake       = 0xAD0D1F1E,
+    -- Control ID for braking
+    brake       = 72,
 
-    -- Control hash for reversing / accelerating while in reverse gear
-    reverse     = 0xFEF80614,
+    -- Control ID for reversing / accelerating while in reverse gear
+    reverse     = 71,
 }
 
 -- ████████████████████████████████████████████████████████████████████████████████
@@ -155,16 +154,16 @@ Config.Controls = {
 
 --[[
     Particle effects displayed on heated wheels.
-    Asset / name combinations must exist in the RDR2 particle library.
+    Asset / name combinations must exist in the GTA5 particle library.
     Adjust scale for visual intensity.
 
-    Known working assets: "core", "scr_recver_heist2", etc.
-    Browse particles: https://github.com/femga/rdr3_discoveries/tree/master/particles
+    Known working assets: "core", "scr_rcbarry2", etc.
+    Browse particles: https://github.com/DurtyFree/gta-v-data-dumps/blob/master/particleEffectsCompact.json
 ]]
 
 Config.Particles = {
     asset = "core",
-    name  = "ent_amb_camp_fire_smoke",
+    name  = "ent_dst_dust",
     scale = 0.45,
 
     -- Wheel bone names for rear and front axles
